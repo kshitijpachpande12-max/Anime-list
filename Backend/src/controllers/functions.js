@@ -1,4 +1,5 @@
 import Anime from "../Models/Anime.js";
+import Watchlist from "../Models/Watchlist.js";
 
 export async function getAll(req,res) {
     try {
@@ -76,3 +77,36 @@ export async function searchAnime(req, res) {
         });
     }
 }
+
+export async function watchlistanime(req,res){
+    try {
+        const watchlistAnimes = await Watchlist.find().sort({createdAt : -1});
+        res.status(200).json(watchlistAnimes);
+    } catch (error) {
+        res.status(500).json({message : "internal server error"});
+        console.error(error);
+    }
+};
+
+export async function Addtowatchlist(req,res){
+    try {
+        const {title,synopsis,img} = req.body;
+        const anime = new Watchlist({title,synopsis,img});
+        const saved = await anime.save();
+        res.status(201).json(saved);
+    } catch (error) {
+        res.status(500).json({message : "internal server error"});
+        console.error(error);
+    }
+};
+
+export async function deletewatchlist(req,res){
+    try {
+        const deleted = await Watchlist.findByIdAndDelete(req.params.id);
+        if(!deleted) return res.status(404).json({message: "Anime not found"});
+        res.status(200).json(deleted);
+    } catch (error) {
+        res.status(500).json({message: "internal server error"});
+        console.error("error in deleting anime",error);
+    }
+};

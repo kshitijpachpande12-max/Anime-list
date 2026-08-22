@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import api from '../lib/axios';
 import toast from 'react-hot-toast';
 import {Link, useNavigate} from 'react-router';
-import {PlusIcon} from 'lucide-react';
+import {PlusIcon, Sparkle} from 'lucide-react';
 
 const Animecard = ({anime}) => {
     const [display,setDisplay] = useState(false);
@@ -13,6 +13,22 @@ const Animecard = ({anime}) => {
     const handleAdd = async ()=>{
         try {
             await api.post("/Anime-list",{
+                title: anime.attributes.titles?.en || anime.attributes.canonicalTitle,
+                synopsis: anime.attributes.synopsis,
+                img: anime.attributes.posterImage.medium,
+                rating: rating
+            })
+            toast.success("Added");
+            navigate("/");
+        } catch (error) {
+            toast.error("Error adding anime");
+            console.log(error);
+        }
+    }
+
+    const handleWatchlist = async ()=>{
+        try {
+            await api.post("/Anime-list/watchlist",{
                 title: anime.attributes.titles?.en || anime.attributes.canonicalTitle,
                 synopsis: anime.attributes.synopsis,
                 img: anime.attributes.posterImage.medium,
@@ -46,6 +62,10 @@ anime.attributes.canonicalTitle}</h3>
             <button className='btn btn-ghost mx-6 text-2xl' onClick={handleAdd}>Rate</button>
             </div>
             )}
+        <button className='btn btn-ghost mx-6'  onClick={handleWatchlist}>
+            <Sparkle/>
+            Add to watchlist
+        </button>
     </div>
   )
 }

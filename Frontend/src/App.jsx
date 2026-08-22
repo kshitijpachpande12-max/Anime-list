@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage.jsx";
 import toast from 'react-hot-toast';
 import SearchAnime from './pages/SearchAnime.jsx';
 import AnimeDetail from './pages/AnimeDetail.jsx';
+import WatchList from './pages/WatchList.jsx';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Route path = "/" element={<HomePage/>}/>
         <Route path = "/search" element={<SearchAnime/>}/>
         <Route path = "/anime/:id" element={<AnimeDetail/>}/>
+        <Route path = "/watchlist" element={<WatchList/>}/>
       </Routes>
     </div>
   )
