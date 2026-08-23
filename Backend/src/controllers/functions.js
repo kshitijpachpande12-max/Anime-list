@@ -3,7 +3,7 @@ import Watchlist from "../Models/Watchlist.js";
 
 export async function getAll(req,res) {
     try {
-        const animes = await Anime.find().sort({createdAt:-1});
+        const animes = await Anime.find().sort({rating:-1});
         res.status(200).json(animes);
     } catch (error) {
         res.status(500).json({message: "internal server error"});
