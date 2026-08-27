@@ -1,0 +1,22 @@
+{
+  "name": "anime-list",
+  "version": "1.0.0",
+  "description": "A full-stack anime list application where you can search for anime, view anime details, manage your personal anime list, and keep a separate watchlist.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix Backend && npm install --prefix Frontend && npm run build --prefix Frontend",
+    "start": "npm run start --prefix Backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kshitijpachpande12-max/Anime-list.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kshitijpachpande12-max/Anime-list/issues"
+  },
+  "homepage": "https://github.com/kshitijpachpande12-max/Anime-list#readme"
+}
