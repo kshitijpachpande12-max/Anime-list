@@ -23,8 +23,6 @@ if(process.env.NODE_ENV !== "production"){
 app.use(express.json());
 app.use("/api/Anime-list",al_Routes);
 
-
-
 if(process.env.NODE_ENV === "production"){
     app.use(express.static(path.join(__dirname,"../Frontend/dist")));
 
