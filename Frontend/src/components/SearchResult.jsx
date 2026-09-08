@@ -35,7 +35,6 @@ const Animecard = ({anime}) => {
                 rating: rating
             })
             toast.success("Added");
-            navigate("/");
         } catch (error) {
             toast.error("Error adding anime");
             console.log(error);

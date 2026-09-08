@@ -21,7 +21,6 @@ const Animecard = ({anime}) => {
             })
             await api.delete(`/Anime-list/watchlist/${id}`);
             toast.success("Added");
-            navigate("/");
         } catch (error) {
             toast.error("Error adding anime");
             console.log(error);
