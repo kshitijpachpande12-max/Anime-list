@@ -12,9 +12,9 @@ const Navbar = () => {
                 <span className='lg:text-2xl text-xl'>Watchlist</span>
             </Link>
             <Link to={"/"}>
-            <h1 className='lg:text-3xl text-xl font-bold text-primary font-mono tracking-tight'>Anime List</h1> </Link>
+            <h1 className='lg:text-3xl text-xl font-bold text-primary font-mono tracking-tight whitespace-nowrap'>Anime List</h1> </Link>
             <div className='flex items-center gap-4'>
-                <Link to={"/search"} className='btn btn-primary'>
+                <Link to={"/search"} className='btn btn-primary btn-sm lg:btn-md'>
                     <Search className="size-5" />
                     <span>Search</span>
                 </Link>
