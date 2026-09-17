@@ -9,10 +9,10 @@ const Navbar = () => {
         <div className='flex items-center justify-between'>
             <Link to={"/watchlist"} className='btn btn-primary'>
                 <Sparkle/>
-                <span className='text-2xl'>Watchlist</span>
+                <span className='lg:text-2xl text-xl'>Watchlist</span>
             </Link>
             <Link to={"/"}>
-            <h1 className='text-3xl font-bold text-primary font-mono tracking-tight'>Anime List</h1> </Link>
+            <h1 className='lg:text-3xl text-2xl font-bold text-primary font-mono tracking-tight'>Anime List</h1> </Link>
             <div className='flex items-center gap-4'>
                 <Link to={"/search"} className='btn btn-primary'>
                     <Search className="size-5" />
