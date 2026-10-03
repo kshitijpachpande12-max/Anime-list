@@ -121,24 +121,6 @@ DB_url=your_mongodb_connection_string
 
 The `.env` file should **not** be committed to GitHub.
 
-## 🚀 Deployment
-
-The application is deployed as two separate Vercel projects.
-
-### Frontend
-
-The React/Vite frontend is deployed on Vercel:
-
-https://anime-list-mkbr.vercel.app/
-
-### Backend
-
-The Express backend is deployed on Vercel:
-
-https://anime-list-sigma.vercel.app/
-
-The backend connects to MongoDB Atlas for persistent data storage.
-
 ## 📚 External API
 
 Anime information is retrieved using the **Kitsu API**.
