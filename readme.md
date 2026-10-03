@@ -2,14 +2,6 @@
 
 A full-stack anime tracking application built with **React, Express.js, Node.js, and MongoDB**. Users can search for anime, manage their watchlist, and keep track of the anime they are watching or have completed.
 
-## 🌐 Live Demo
-
-**Frontend:**
-https://anime-list-mkbr.vercel.app/
-
-**Backend API:**
-https://anime-list-sigma.vercel.app/
-
 ## ✨ Features
 
 * 🔎 Search for anime
@@ -146,14 +138,6 @@ The Express backend is deployed on Vercel:
 https://anime-list-sigma.vercel.app/
 
 The backend connects to MongoDB Atlas for persistent data storage.
-
-## 📡 API
-
-The main backend API is available at:
-
-```text
-https://anime-list-sigma.vercel.app/api/Anime-list
-```
 
 ## 📚 External API
 
