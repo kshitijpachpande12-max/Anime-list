@@ -32,7 +32,7 @@ const SearchAnime = () => {
     ()=>{
       function Handle(e){
         e.preventDefault()
-        if(e.target.name === search){
+        if(e.target.name === "search"){
           if(e.key ==="Backspace"){
               setName(prev => prev.slice(0,-1));
             }
