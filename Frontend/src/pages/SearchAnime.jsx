@@ -31,8 +31,8 @@ const SearchAnime = () => {
   useEffect(
     ()=>{
       function Handle(e){
-        e.preventDefault()
         if(e.target.name === "search"){
+          e.preventDefault()
           if(e.key ==="Backspace"){
               setName(prev => prev.slice(0,-1));
             }
