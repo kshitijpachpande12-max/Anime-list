@@ -31,18 +31,20 @@ const SearchAnime = () => {
   useEffect(
     ()=>{
       function Handle(e){
-        if(e.target.name === "search"){
-          e.preventDefault()
-          if(e.key ==="Backspace"){
-              setName(prev => prev.slice(0,-1));
-            }
-          else if(e.key ==="Enter"){
-            fetch();
-          }
-          else if(e.key.length === 1){
-            setName(prev => prev+ e.key);
-          }
+        if (e.target.tagName === "INPUT" && e.target.name !== "search") {
+        return;
         }
+        e.preventDefault()
+        if(e.key ==="Backspace"){
+            setName(prev => prev.slice(0,-1));
+          }
+        else if(e.key ==="Enter"){
+          fetch();
+        }
+        else if(e.key.length === 1){
+          setName(prev => prev+ e.key);
+        }
+        
       };
       document.addEventListener("keydown",Handle);
       return ()=>{
