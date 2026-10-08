@@ -57,7 +57,7 @@ anime.attributes.canonicalTitle}</h3>
             Add to the list
         </button>
         {display && (<div className='flex justify-center flex-row bg-base-100 mt-6'>
-            <input type = "Number" className='input input-bordered' min={0} max={10} value={rating} onChange={(e)=> setRating(e.target.value)}/>
+            <input type = "Number" className='input input-bordered 0' min={0} max={10} value={rating} onChange={(e)=> setRating(e.target.value)}/>
             <button className='btn btn-ghost mx-6 text-2xl' onClick={handleAdd}>Rate</button>
             </div>
             )}

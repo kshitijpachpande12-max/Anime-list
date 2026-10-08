@@ -32,14 +32,16 @@ const SearchAnime = () => {
     ()=>{
       function Handle(e){
         e.preventDefault()
-        if(e.key ==="Backspace"){
-            setName(prev => prev.slice(0,-1));
+        if(e.target.name === search){
+          if(e.key ==="Backspace"){
+              setName(prev => prev.slice(0,-1));
+            }
+          else if(e.key ==="Enter"){
+            fetch();
           }
-        else if(e.key ==="Enter"){
-          fetch();
-        }
-        else if(e.key.length === 1){
-          setName(prev => prev+ e.key);
+          else if(e.key.length === 1){
+            setName(prev => prev+ e.key);
+          }
         }
       };
       document.addEventListener("keydown",Handle);
@@ -61,7 +63,7 @@ const SearchAnime = () => {
     <div className='bg-base-200 min-h-screen'>
       <Navbar/>
       <div className='form-control flex flex-row justify-center mt-10 mb-10 px-10'>
-        <input className='input input-bordered text-center text-xl md:text-3xl max-w-70' placeholder='Search' value = {name} onChange={(e)=>{setName(e.target.value)}}/>
+        <input className='input input-bordered text-center text-xl md:text-3xl max-w-70' placeholder='Search' name = 'search' value = {name} onChange={(e)=>{setName(e.target.value)}}/>
         <label>
         <button type='submit' className='btn btn-ghost ' onClick={()=>{fetch()}}><Search/></button>
         </label>
