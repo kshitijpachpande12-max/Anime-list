@@ -77,7 +77,7 @@ app.use((err, req, res, next) => {
 
 // 7. Start the server everywhere except Vercel (which imports `app` itself)
 const PORT = process.env.PORT || 3000;
-if (!process.env.VERCEL) {
+if (process.env.VERCEL !== "1") {
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on port ${PORT}`);
   });
