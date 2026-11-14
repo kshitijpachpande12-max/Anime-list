@@ -1,30 +1,16 @@
 import express from "express";
-import dns from "dns";
 import dotenv from "dotenv";
 import cors from "cors";
-import sentinel from "sentinel-telemetry-agent"; // <-- UNCOMMENT THIS
 import { ConnectDB } from "./config/DB.js";
 import al_Routes from "./routes/al_Routes.js";
 
 dotenv.config();
-dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
-// 1. Initialize Sentinel (safely wrapped)
-try {
-  sentinel.init({
-    serviceName: "Anime List",
-    apiKey: process.env.SENTINEL_API_KEY || "01M7D5M2FQ3W6DSPJ3WECKV7DQ",
-    projectId: process.env.SENTINEL_PROJECT_ID || "6af868f89a495aa408069b1b",
-    serverUrl: "https://sentinel-rosy-three.vercel.app",
-    serverless: true,
-  });
-} catch (err) {
-  console.warn("Sentinel passive mode:", err.message);
-}
+// Note: Removed dns.setServers(...) as Vercel serverless restricts custom DNS sockets
 
 const app = express();
 
-// 2. CORS configuration
+// 1. CORS MUST BE FIRST
 const corsOptions = {
   origin: ["https://anime-list-mkbr.vercel.app", "http://localhost:5173"],
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
@@ -36,24 +22,41 @@ app.options("*", cors(corsOptions));
 
 app.use(express.json());
 
-// 3. Attach Sentinel middleware
-app.use(sentinel.middleware());
+// 2. Load Sentinel Safely (Non-blocking & Zero-Crash Guarantee)
+let sentinelMiddleware = (req, res, next) => next();
+try {
+  const { default: sentinel } = await import("sentinel-telemetry-agent");
+  sentinel.init({
+    serviceName: "Anime List",
+    apiKey: process.env.SENTINEL_API_KEY || "01M7D5M2FQ3W6DSPJ3WECKV7DQ",
+    projectId: process.env.SENTINEL_PROJECT_ID || "6af868f89a495aa408069b1b",
+    serverUrl: "https://sentinel-rosy-three.vercel.app",
+    serverless: true,
+  });
+  sentinelMiddleware = sentinel.middleware();
+} catch (err) {
+  console.warn("[Sentinel] Running in passive fallback mode:", err.message);
+}
 
-// Connect DB per request (serverless friendly)
+// 3. Attach telemetry middleware
+app.use((req, res, next) => sentinelMiddleware(req, res, next));
+
+// 4. Connect to database per request
 app.use(async (req, res, next) => {
   try {
     await ConnectDB();
     next();
   } catch (err) {
+    console.error("DB connection error:", err.message);
     next(err);
   }
 });
 
 app.use("/api/Anime-list", al_Routes);
 
-// Error Handler
+// 5. Global Error Handler with CORS safety
 app.use((err, req, res, next) => {
-  console.error(err);
+  console.error("API Error:", err);
   res.status(500).json({ message: err.message || "Server error" });
 });
 
