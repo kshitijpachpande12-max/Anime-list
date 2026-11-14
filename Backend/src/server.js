@@ -28,8 +28,8 @@ try {
   const { default: sentinel } = await import("sentinel-telemetry-agent");
   sentinel.init({
     serviceName: "Anime List",
-    apiKey: process.env.SENTINEL_API_KEY || "01M7D5M2FQ3W6DSPJ3WECKV7DQ",
-    projectId: process.env.SENTINEL_PROJECT_ID || "6af868f89a495aa408069b1b",
+    apiKey: process.env.SENTINEL_API_KEY || "01M7D7Y9D9ZDD4XQC4Z640MQPX",
+    projectId: process.env.SENTINEL_PROJECT_ID || "6af8727837ed5204d0ead20a",
     serverUrl: "https://sentinel-rosy-three.vercel.app",
     serverless: true,
   });
