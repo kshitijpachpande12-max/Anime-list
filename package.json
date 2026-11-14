@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/kshitijpachpande12-max/Anime-list/issues"
   },
-  "homepage": "https://github.com/kshitijpachpande12-max/Anime-list#readme"
+  "homepage": "https://github.com/kshitijpachpande12-max/Anime-list#readme",
+  "dependencies": {
+    "sentinel-telemetry-agent": "github:kshitijpachpande12-max/Sentinel"
+  }
 }
