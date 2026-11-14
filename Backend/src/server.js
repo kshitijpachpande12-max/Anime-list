@@ -43,7 +43,7 @@ try {
         process.env.SENTINEL_SERVER_URL ||
         "https://sentinel-rosy-three.vercel.app",
       // serverless mode only on Vercel; containers keep normal heartbeats
-      serverless: !!process.env.VERCEL,
+      serverless: process.env.VERCEL === "1",
     });
     sentinelMiddleware = sentinel.middleware();
   } else {
